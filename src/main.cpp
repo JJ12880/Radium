@@ -3130,6 +3130,8 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             {
                 pfrom->PushMessage("getaddr");
                 pfrom->fGetAddr = true;
+		LogPrintf("Requesting addresses from peer");
+
             }
             addrman.Good(pfrom->addr);
         } else {
@@ -3236,7 +3238,10 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         if (vAddr.size() < 1000)
             pfrom->fGetAddr = false;
         if (pfrom->fOneShot)
+	{
             pfrom->fDisconnect = true;
+	    LogPrintf("Loaded some addresses from oneshot peer");
+	}
     }
 
     else if (strCommand == "inv")

@@ -42,6 +42,7 @@ unsigned int nNodeLifespan;
 unsigned int nDerivationMethodIndex;
 unsigned int nMinerSleep;
 bool fUseFastIndex;
+string seednodes[] = {"54.250.244.93", "52.54.136.169", "32.229.201.149", "54.93.52.131"};
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -632,6 +633,12 @@ bool AppInit2(boost::thread_group& threadGroup)
 
     BOOST_FOREACH(string strDest, mapMultiArgs["-seednode"])
         AddOneShot(strDest);
+    
+    BOOST_FOREACH(string strDest, seednodes)
+	{
+        AddOneShot(strDest);
+	LogPrintf("Added oneshot peer %s \n", strDest);
+	}
 
     // ********************************************************* Step 7: load blockchain
 

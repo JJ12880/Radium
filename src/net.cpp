@@ -1153,12 +1153,15 @@ void static ProcessOneShot()
             return;
         strDest = vOneShots.front();
         vOneShots.pop_front();
+        LogPrintf("Attempting to process oneshot %s \n", strDest);
+	
     }
     CAddress addr;
     CSemaphoreGrant grant(*semOutbound, true);
     if (grant) {
         if (!OpenNetworkConnection(addr, &grant, strDest.c_str(), true))
             AddOneShot(strDest);
+	    LogPrintf("Unable to connect to oneshot %s \n", strDest);
     }
 }
 
