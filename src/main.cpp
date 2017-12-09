@@ -3233,6 +3233,12 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             // Do not store addresses outside our network
             if (fReachable)
                 vAddrOk.push_back(addr);
+	if (pfrom->fOneShot)
+	{
+            LogPrintf("Loaded %s from peer \n", addr.ToString());
+	}
+
+
         }
         addrman.Add(vAddrOk, pfrom->addr, 2 * 60 * 60);
         if (vAddr.size() < 1000)
@@ -3240,7 +3246,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         if (pfrom->fOneShot)
 	{
             pfrom->fDisconnect = true;
-	    LogPrintf("Loaded some addresses from oneshot peer");
+	    LogPrintf("Loaded some addresses from oneshot peer \n");
 	}
     }
 
