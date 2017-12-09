@@ -42,7 +42,7 @@ unsigned int nNodeLifespan;
 unsigned int nDerivationMethodIndex;
 unsigned int nMinerSleep;
 bool fUseFastIndex;
-string seednodes[] = {"54.250.244.93", "52.54.136.169", "32.229.201.149", "54.93.52.131"};
+string seednodes[] = {"34.207.38.233", "35.153.123.156", "52.23.134.122"};
 
 //////////////////////////////////////////////////////////////////////////////
 //
